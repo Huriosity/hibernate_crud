@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -39,6 +41,25 @@ public class Ruler {
 
     public void setRullerMainTitleRel(RullerMainTitleRel rullerMainTitleRel) {
         this.rullerMainTitleRel = rullerMainTitleRel;
+    }
+
+
+    //OneToMany Example
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ruler")///////////////////////////////////////
+    @ElementCollection(targetClass=RulerCountryRel.class)/////////////////
+    private Set<RulerCountryRel> rulerCountryRels = new HashSet<>();
+
+    public Set<RulerCountryRel> getRulerCountryRels() {
+        return rulerCountryRels;
+    }
+
+    public void setRulerCountryRels(Set<RulerCountryRel> rulerCountryRels) {
+        this.rulerCountryRels = rulerCountryRels;
+    }
+
+    public void addRulerCountryRels(RulerCountryRel contact) {
+        contact.setRuler(this);//////////////////////////////////////////////
+        this.rulerCountryRels.add(contact);
     }
 
 

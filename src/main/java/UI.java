@@ -1,10 +1,6 @@
 import com.github.Huriosity.InputUtils;
-import dao.RulerDAO;
-import dao.RulerTitleDAO;
-import dao.TitleDAO;
-import model.Ruler;
-import model.RullerMainTitleRel;
-import model.Title;
+import dao.*;
+import model.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +16,9 @@ public class UI {
             System.out.println("Выбеpите таблицy: " +
                     "\n1 Ruler " +
                     "\n2 Title" +
-                    "\n3 Ruler Title" +
+                    "\n3 Country" +
+                    "\n4 Ruler Title" +
+                    "\n5 Ruler Country" +
                     "\n12 все связи в конкетном title " +
                     "\n0 exit");
             tmp = scanner.nextLine();
@@ -85,7 +83,36 @@ public class UI {
                     // titleDAO.start();
                     break;
                 }
-                case "3": {
+                case "3":{
+                    CountryDAO countryDAO = new CountryDAO();
+                    while (tmp != "end"){
+                        actionWithTable();
+                        tmp = scanner.nextLine();
+                        switch (tmp){
+                            case "1": {
+                                countryDAO.listCountrys();
+                                break;
+                            }
+                            case "2":{
+                                countryDAO.addCountry();
+                                break;
+                            }
+                            case "3": {
+                                System.out.println("Введите id искомого элемента");
+                                int id = InputUtils.getInt();
+                                countryDAO.findCountryByID(id);
+                                break;
+                            }
+                            default: {
+                                tmp = "end";
+                                break;
+                            }
+                        }
+                    }
+
+                    break;
+                }
+                case "4": {
                     RulerTitleDAO rulerTitleDAO = new RulerTitleDAO();
 
                     while (tmp != "end"){
@@ -114,6 +141,35 @@ public class UI {
                         }
                     }
                     // rulerTitleDAO.start();
+                    break;
+                }
+                case "5":{
+                    RulerCountryDAO rulerCountryDAO = new RulerCountryDAO();
+                    while (tmp != "end"){
+                        actionWithTable();
+                        tmp = scanner.nextLine();
+                        switch (tmp){
+                            case "1": {
+                                rulerCountryDAO.listRullersCountrys();
+                                break;
+                            }
+                            case "2":{
+                                rulerCountryDAO.addRulerCountry();
+                                break;
+                            }
+                            case "3": {
+                                System.out.println("Not impl..");
+                                /*System.out.println("Введите id искомого элемента");
+                                int id = InputUtils.getInt();
+                                titleDAO.findTitleByID(id);*/
+                                break;
+                            }
+                            default: {
+                                tmp = "end";
+                                break;
+                            }
+                        }
+                    }
                     break;
                 }
                 case "12":{
