@@ -39,12 +39,24 @@ public class RulerTitleDAO {
         System.out.println("Введите titleID");
         titleID = InputUtils.getInt();
 
-        System.out.println("Введите got_the_title_in");
-        got_the_title_in = InputUtils.getInteger();
+        while (true){
+            System.out.println("Введите got_the_title_in");
+            got_the_title_in = InputUtils.getInteger();
 
-        System.out.println("Введите lost_the_title_in");
-        lost_the_title_in = InputUtils.getInteger();
+            System.out.println("Введите lost_the_title_in");
+            lost_the_title_in = InputUtils.getInteger();
 
+            if (got_the_title_in != null && lost_the_title_in != null) {
+                if (got_the_title_in > lost_the_title_in) {
+                    System.out.println("Остоpожнее молодой человек! got_the_title_in > lost_the_title_in. Введите заного");
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+
+        }
 
 
         Session session = Factory.getSessionFactory().openSession();

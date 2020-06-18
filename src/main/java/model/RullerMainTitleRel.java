@@ -94,9 +94,9 @@ public class RullerMainTitleRel {
 
     @Override
     public String toString() {
-        return "Ruler:\n" +
-                "id: " + ruller_id +
-                "\ntitl id : " + title_id + "\n";// +
+        return "RullerMainTitleRel:\n" +
+                "ruler id: " + ruller_id +
+                "\ntitle id : " + title_id + "\n";// +
                /* "year of birth: " + year_of_birth + "\n" +
                 "year if death: " + year_of_death + "\n" +
                 "testator: " + testator + "\n";*/
