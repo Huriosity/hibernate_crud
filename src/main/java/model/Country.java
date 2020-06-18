@@ -34,6 +34,23 @@ public class Country {
     }
 
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")///////////////////////////////////////
+    @ElementCollection(targetClass=CountryCapitalTownRel.class)/////////////////
+    private Set<CountryCapitalTownRel> countryCapitalTownRel = new HashSet<>();
+
+    public Set<CountryCapitalTownRel> getCountryCapitalTownRel() {
+        return countryCapitalTownRel;
+    }
+
+    public void setCountryCapitalTownRel(Set<CountryCapitalTownRel> countryCapitalTownRel) {
+        this.countryCapitalTownRel = countryCapitalTownRel;
+    }
+
+    public void addCountryTownRel(CountryCapitalTownRel contact) {
+        contact.setCountry(this);//////////////////////////////////////////////
+        this.countryCapitalTownRel.add(contact);
+    }
+
     ////////////////////////////////////////
     public int getId() {
         return id;

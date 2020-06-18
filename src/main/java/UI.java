@@ -17,8 +17,10 @@ public class UI {
                     "\n1 Ruler " +
                     "\n2 Title" +
                     "\n3 Country" +
-                    "\n4 Ruler Title" +
-                    "\n5 Ruler Country" +
+                    "\n4 Town" +
+                    "\n5 Ruler Title" +
+                    "\n6 Ruler Country" +
+                    "\n7 Country Town" +
                     "\n12 все связи в конкетном title " +
                     "\n0 exit");
             tmp = scanner.nextLine();
@@ -112,7 +114,37 @@ public class UI {
 
                     break;
                 }
+
                 case "4": {
+                    TownDAO townDAO = new TownDAO();
+                    while (tmp != "end"){
+                        actionWithTable();
+                        tmp = scanner.nextLine();
+                        switch (tmp){
+                            case "1": {
+                                townDAO.listTowns();
+                                break;
+                            }
+                            case "2":{
+                                townDAO.addTown();
+                                break;
+                            }
+                            case "3": {
+                                System.out.println("Введите id искомого элемента");
+                                int id = InputUtils.getInt();
+                                townDAO.findTownByID(id);
+                                break;
+                            }
+                            default: {
+                                tmp = "end";
+                                break;
+                            }
+                        }
+                    }
+
+                    break;
+                }
+                case "5": {
                     RulerTitleDAO rulerTitleDAO = new RulerTitleDAO();
 
                     while (tmp != "end"){
@@ -143,7 +175,7 @@ public class UI {
                     // rulerTitleDAO.start();
                     break;
                 }
-                case "5":{
+                case "6":{
                     RulerCountryDAO rulerCountryDAO = new RulerCountryDAO();
                     while (tmp != "end"){
                         actionWithTable();
@@ -162,6 +194,33 @@ public class UI {
                                 /*System.out.println("Введите id искомого элемента");
                                 int id = InputUtils.getInt();
                                 titleDAO.findTitleByID(id);*/
+                                break;
+                            }
+                            default: {
+                                tmp = "end";
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+
+                case "7": {
+                    CountryCapitalTownDAO countryCapitalTownDAO = new CountryCapitalTownDAO();
+                    while (tmp != "end"){
+                        actionWithTable();
+                        tmp = scanner.nextLine();
+                        switch (tmp){
+                            case "1": {
+                                countryCapitalTownDAO.listCountryCapitals();
+                                break;
+                            }
+                            case "2":{
+                                countryCapitalTownDAO.addCountryCapital();
+                                break;
+                            }
+                            case "3": {
+                                System.out.println("Not impl..");
                                 break;
                             }
                             default: {
