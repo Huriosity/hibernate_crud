@@ -45,7 +45,7 @@ public class Ruler {
 
 
     //OneToMany Example
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ruler")///////////////////////////////////////
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ruler",fetch = FetchType.EAGER)///////////////////////////////////////
     @ElementCollection(targetClass=RulerCountryRel.class)/////////////////
     private Set<RulerCountryRel> rulerCountryRels = new HashSet<>();
 

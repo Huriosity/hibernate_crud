@@ -16,7 +16,7 @@ public class Country {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")///////////////////////////////////////
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country",fetch = FetchType.EAGER)///////////////////////////////////////
     @ElementCollection(targetClass=RulerCountryRel.class)/////////////////
     private Set<RulerCountryRel> rulerCountryRels = new HashSet<>();
 
@@ -34,7 +34,7 @@ public class Country {
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")///////////////////////////////////////
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country",fetch = FetchType.EAGER)///////////////////////////////////////
     @ElementCollection(targetClass=CountryCapitalTownRel.class)/////////////////
     private Set<CountryCapitalTownRel> countryCapitalTownRel = new HashSet<>();
 

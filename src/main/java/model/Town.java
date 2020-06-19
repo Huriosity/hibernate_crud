@@ -15,7 +15,7 @@ public class Town {
     @Column(name = "name",nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "town")///////////////////////////////////////
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "town",fetch = FetchType.EAGER)///////////////////////////////////////
     @ElementCollection(targetClass=CountryCapitalTownRel.class)/////////////////
     private Set<CountryCapitalTownRel> countryCapitalTown = new HashSet<>();
 
