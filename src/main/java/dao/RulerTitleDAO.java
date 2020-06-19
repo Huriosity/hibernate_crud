@@ -92,6 +92,66 @@ public class RulerTitleDAO {
 
     public void updateRulerMainTitle(){
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Ruler id");
+        int rulerID = InputUtils.getInt();
+
+        System.out.println("Enter Title id");
+        int titleID = InputUtils.getInt();
+
+        RullerMainTitleRel rullerMainTitleRel = RulerTitleDAO.findRulerMainTitleRelBy2ID(rulerID,titleID);
+
+        while (true){
+            System.out.println("Would you like to change the title? (y/n)");
+            String choose = scanner.nextLine();
+            if(choose.equals("y")){
+                System.out.println("Old title id: " + rullerMainTitleRel.getTitle_id());
+                System.out.println("Enter title id: ");
+                int newTitleID = InputUtils.getInt();
+                Title title = TitleDAO.findTitleByID(newTitleID);
+                rullerMainTitleRel.setTitle(title);
+                rullerMainTitleRel.setTitle_id(newTitleID);
+                break;
+            } else if(choose.equals("n")){
+                break;
+            }
+        }
+
+        while (true){
+            System.out.println("Would you like to change the got_the_title_in? (y/n)");
+            String choose = scanner.nextLine();
+            if(choose.equals("y")){
+                System.out.println("Old got_the_title_in: " + rullerMainTitleRel.getGot_the_title_in());
+                System.out.println("Enter new got_the_title_in: ");
+                rullerMainTitleRel.setGot_the_title_in(InputUtils.getInteger());
+                break;
+            } else if(choose.equals("n")){
+                break;
+            }
+        }
+
+        while (true){
+            System.out.println("Would you like to change the lost_the_title_in? (y/n)");
+            String choose = scanner.nextLine();
+            if(choose.equals("y")){
+                System.out.println("Old lost_the_title_in: " + rullerMainTitleRel.getLost_the_title_in());
+                System.out.println("Enter new lost_the_title_in: ");
+                rullerMainTitleRel.setLost_the_title_in(InputUtils.getInteger());
+                break;
+            } else if(choose.equals("n")){
+                break;
+            }
+        }
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.update(rullerMainTitleRel);
+
+        transaction.commit();
+        session.close();
+
     }
 
     public void listRullersMainTitle() {
@@ -110,8 +170,8 @@ public class RulerTitleDAO {
     public static RullerMainTitleRel findRulerMainTitleRelBy2ID(int rulerID, int titleID) {
         Session session = Factory.getSessionFactory().openSession();
         Query query = session.createQuery("FROM RullerMainTitleRel WHERE ruller_id = :id AND title_id = :id2");
-        query.setParameter("ruller_id", rulerID);
-        query.setParameter("title_id",titleID);
+        query.setParameter("id", rulerID);
+        query.setParameter("id2",titleID);
         RullerMainTitleRel rullerMainTitleRel = (RullerMainTitleRel) query.getSingleResult();
 
         System.out.println("ХОБА");

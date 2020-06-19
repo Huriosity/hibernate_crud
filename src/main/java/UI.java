@@ -182,6 +182,10 @@ public class UI {
                                 titleDAO.findTitleByID(id);*/
                                 break;
                             }
+                            case "4": {
+                                rulerTitleDAO.updateRulerMainTitle();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;

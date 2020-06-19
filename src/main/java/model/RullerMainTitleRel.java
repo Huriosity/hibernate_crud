@@ -96,10 +96,9 @@ public class RullerMainTitleRel {
     public String toString() {
         return "RullerMainTitleRel:\n" +
                 "ruler id: " + ruller_id +
-                "\ntitle id : " + title_id + "\n";// +
-               /* "year of birth: " + year_of_birth + "\n" +
-                "year if death: " + year_of_death + "\n" +
-                "testator: " + testator + "\n";*/
+                "\ntitle id : " + title_id + "\n" +
+                "got the title in: " + got_the_title_in + "\n" +
+                "lost the title in: " + lost_the_title_in + "\n";
     }
 
 }
