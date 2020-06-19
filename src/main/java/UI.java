@@ -44,6 +44,10 @@ public class UI {
                                 System.out.println("Not impl..");
                                 break;
                             }
+                            case "4": {
+                                rulerDAO.updateRuler();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;
@@ -259,6 +263,7 @@ public class UI {
                 "\n1 смотеть всё" +
                 "\n2 добавить " +
                 "\n3 find by id " +
+                "\n4 обновить " +
                 "\n Любая дpyгая клавиша = возвpат к выбоpy таблиц");
 
     }
