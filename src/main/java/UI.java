@@ -77,6 +77,10 @@ public class UI {
                                 titleDAO.findTitleByID(id);
                                 break;
                             }
+                            case "4": {
+                                titleDAO.updateTitle();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;
@@ -109,6 +113,10 @@ public class UI {
                                 countryDAO.findCountryByID(id);
                                 break;
                             }
+                            case "4": {
+                                countryDAO.updateCountry();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;
@@ -137,6 +145,10 @@ public class UI {
                                 System.out.println("Введите id искомого элемента");
                                 int id = InputUtils.getInt();
                                 townDAO.findTownByID(id);
+                                break;
+                            }
+                            case "4": {
+                                townDAO.updateTown();
                                 break;
                             }
                             default: {

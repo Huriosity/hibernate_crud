@@ -1,6 +1,8 @@
 package dao;
 
+import com.github.Huriosity.InputUtils;
 import model.Country;
+import model.Title;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -34,6 +36,36 @@ public class CountryDAO {
         session.close();
 
         return countryId;
+    }
+
+    public void updateCountry() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter country id");
+        int id = InputUtils.getInt();
+
+        Country country = CountryDAO.findCountryByID(id);
+
+        while (true){
+            System.out.println("Would you like to change the country name? (y/n)");
+            String choose = scanner.nextLine();
+            if(choose.equals("y")){
+                System.out.println("Old name: " + country.getName());
+                System.out.println("Enter new name: ");
+                country.setName(scanner.nextLine());
+                break;
+            } else if(choose.equals("n")){
+                break;
+            }
+        }
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.update(country);
+
+        transaction.commit();
+        session.close();
     }
 
     public void listCountrys() {

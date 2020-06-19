@@ -1,5 +1,7 @@
 package dao;
 
+import com.github.Huriosity.InputUtils;
+import model.Title;
 import model.Town;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,6 +36,36 @@ public class TownDAO {
         session.close();
 
         return townId;
+    }
+
+    public void updateTown() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter town id");
+        int id = InputUtils.getInt();
+
+        Town town = TownDAO.findTownByID(id);
+
+        while (true){
+            System.out.println("Would you like to change the town name? (y/n)");
+            String choose = scanner.nextLine();
+            if(choose.equals("y")){
+                System.out.println("Old name: " + town.getName());
+                System.out.println("Enter new name: ");
+                town.setName(scanner.nextLine());
+                break;
+            } else if(choose.equals("n")){
+                break;
+            }
+        }
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.update(town);
+
+        transaction.commit();
+        session.close();
     }
 
     public void listTowns() {

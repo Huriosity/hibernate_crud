@@ -1,5 +1,7 @@
 package dao;
 
+import com.github.Huriosity.InputUtils;
+import model.Ruler;
 import model.Title;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,6 +51,36 @@ public class TitleDAO {
         session.close();
 
         return titleId;
+    }
+
+    public void updateTitle() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Title id");
+        int id = InputUtils.getInt();
+
+        Title title = TitleDAO.findTitleByID(id);
+
+        while (true){
+            System.out.println("Would you like to change the title name? (y/n)");
+            String choose = scanner.nextLine();
+            if(choose.equals("y")){
+                System.out.println("Old name: " + title.getName());
+                System.out.println("Enter new name: ");
+                title.setName(scanner.nextLine());
+                break;
+            } else if(choose.equals("n")){
+                break;
+            }
+        }
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.update(title);
+
+        transaction.commit();
+        session.close();
     }
 
     public void listTitles() {
