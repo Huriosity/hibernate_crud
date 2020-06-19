@@ -51,15 +51,14 @@ public class TownDAO {
 
     public static Town findTownByID(int id) {
         Session session = Factory.getSessionFactory().openSession();
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
-        // = session.createQuery("from ContactEntity where firstName = :paramName");
         Query query = session.createQuery("FROM Town WHERE id = :id");
         query.setParameter("id", id);
         Town town = (Town) query.getSingleResult();
 
         System.out.println("ХОБА");
         System.out.println(town);
+
+        session.close();
 
         return town;
     }

@@ -173,7 +173,7 @@ public class RulerDAO {
 
         System.out.println("ХОБА");
         System.out.println(ruler);
-        
+
         session.close();
 
         return ruler;

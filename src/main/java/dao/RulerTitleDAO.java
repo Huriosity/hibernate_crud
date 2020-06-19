@@ -13,7 +13,7 @@ import java.util.List;
 public class RulerTitleDAO {
     public void start() {
         System.out.println((System.getProperty("user.dir")));
-        SessionFactory sessionFactory = Factory.getSessionFactory(); ////////////// &&&&&&&&&&&&&&&&&&&
+        SessionFactory sessionFactory = Factory.getSessionFactory();
 
         RulerTitleDAO rulerTitleDAO = new RulerTitleDAO();
 
@@ -25,7 +25,6 @@ public class RulerTitleDAO {
         rulerTitleDAO.listRullersMainTitle();
     }
 
-    // public Integer addRulerMainTitle(int rulerID, int titleID,Integer got_the_title_in, Integer lost_the_title_in){
     public Integer addRulerMainTitle(){
 
         int rulerID;
@@ -72,8 +71,6 @@ public class RulerTitleDAO {
         rullerMainTitle.setGot_the_title_in(got_the_title_in);
         rullerMainTitle.setLost_the_title_in(lost_the_title_in);
 
-        // TitleDAO titleDAO = new TitleDAO();
-        // Добавили связи в title
         Title rulerTitle = TitleDAO.findTitleByID(titleID);
         rulerTitle.addRullerMainTitleRels(rullerMainTitle);
 
@@ -88,10 +85,6 @@ public class RulerTitleDAO {
         session.close();
 
         return rullerMainTitleId;
-        /*}catch (Exception ex) {
-            System.out.println("Ошибка в addRulerMainTitle");
-            System.out.println(ex);
-        }*/
     }
 
     public void listRullersMainTitle() {

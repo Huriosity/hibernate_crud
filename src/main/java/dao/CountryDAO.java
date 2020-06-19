@@ -51,15 +51,14 @@ public class CountryDAO {
 
     public static Country findCountryByID(int id) {
         Session session = Factory.getSessionFactory().openSession();
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
-        // = session.createQuery("from ContactEntity where firstName = :paramName");
         Query query = session.createQuery("FROM Country WHERE id = :id");
         query.setParameter("id", id);
         Country country = (Country) query.getSingleResult();
 
         System.out.println("ХОБА");
         System.out.println(country);
+
+        session.close();
 
         return country;
     }

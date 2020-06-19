@@ -49,13 +49,6 @@ public class TitleDAO {
         session.close();
 
         return titleId;
-/*        catch (Exception  ex){
-            System.out.println("Ошибка в добавлении титла");
-            System.out.println(ex);
-        }*/
-
-        // return null;
-
     }
 
     public void listTitles() {
@@ -73,15 +66,14 @@ public class TitleDAO {
 
     public static Title findTitleByID(int id) {
         Session session = Factory.getSessionFactory().openSession();
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
-        // = session.createQuery("from ContactEntity where firstName = :paramName");
         Query query = session.createQuery("FROM Title WHERE id = :id");
         query.setParameter("id", id);
         Title title = (Title) query.getSingleResult();
 
         System.out.println("ХОБА");
         System.out.println(title);
+
+        session.close();
 
         return title;
     }
