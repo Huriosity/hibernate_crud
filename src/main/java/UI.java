@@ -216,6 +216,10 @@ public class UI {
                                 titleDAO.findTitleByID(id);*/
                                 break;
                             }
+                            case "4": {
+                                rulerCountryDAO.updateRulerCountry();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;

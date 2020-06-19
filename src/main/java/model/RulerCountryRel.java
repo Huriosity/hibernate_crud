@@ -97,8 +97,9 @@ public class RulerCountryRel {
     @Override
     public String toString() {
         return "RulerCountryRel:\n" +
-                "id: " + ruler_id +
-                "\ncountry_id id : " + country_id + "" +
+                "id: " + id +
+                "\nruler_id  : " + ruler_id + "" +
+                "\ncountry_id  : " + country_id + "" +
                 "\nyear_of_reign : " + year_of_reign +
                 "\nyear_end_of_reign : " + year_end_of_reign;// +
     }
