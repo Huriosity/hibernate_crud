@@ -52,7 +52,7 @@ public class RulerCountryDAO {
 
         RulerCountryRel rulerCountryRel = new RulerCountryRel();
         rulerCountryRel.setRuler_id(rulerID);
-        rulerCountryRel.setCountry_id(countryID);
+        // rulerCountryRel.setCountry_id(countryID);
         rulerCountryRel.setYear_of_reign(year_of_reign);
         rulerCountryRel.setYear_end_of_reign(year_end_of_reign);
 
@@ -61,6 +61,7 @@ public class RulerCountryDAO {
 
         Country country = CountryDAO.findCountryByID(countryID);
         country.addRulerCountryRels(rulerCountryRel);
+        rulerCountryRel.setCountry(country);
 
         rulerCountryId = (Integer) session.save(rulerCountryRel);
 
@@ -80,17 +81,23 @@ public class RulerCountryDAO {
         int countryID = InputUtils.getInt();
 
         RulerCountryRel rulerCountryRel = RulerCountryDAO.findRulerCountryRelBy2ID(rulerID,countryID);
+        System.out.println("find tis rulerCountryRel: ");
+        System.out.println(rulerCountryRel);
 
         while (true){
             System.out.println("Would you like to change the country? (y/n)");
             String choose = scanner.nextLine();
             if(choose.equals("y")){
-                System.out.println("Old country id: " + rulerCountryRel.getCountry_id());
+                // System.out.println("Old country id: " + rulerCountryRel.getCountry_id());
+                System.out.println("Old country id: " + rulerCountryRel.getCountry().getId());
                 System.out.println("Enter new country id: ");
                 int newCountryID = InputUtils.getInt();
                 Country country = CountryDAO.findCountryByID(newCountryID);
+
+                System.out.println("find tis country: ");
+                System.out.println(country);
                 rulerCountryRel.setCountry(country);
-                rulerCountryRel.setCountry_id(countryID);
+                // rulerCountryRel.setCountry(countryID);
                 break;
             } else if(choose.equals("n")){
                 break;

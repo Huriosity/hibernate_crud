@@ -15,8 +15,8 @@ public class RulerCountryRel {
     @Column(name = "ruler_id",nullable = false)
     private int ruler_id;
 
-    @Column(name = "country_id",nullable = false)
-    private int country_id;
+    // @Column(name = "country_id",nullable = false)
+    // private int country_id;
 
     @Column(name = "year_of_reign")
     private Integer year_of_reign;
@@ -37,7 +37,7 @@ public class RulerCountryRel {
     }
 
     @ManyToOne
-    @JoinColumn(name = "country_id", referencedColumnName = "id",insertable = false, updatable = false)
+    @JoinColumn(name = "country_id", referencedColumnName = "id",insertable = false)
     private Country country;
 
     public Country getCountry() {
@@ -68,13 +68,13 @@ public class RulerCountryRel {
     }
 
     //////////////////////////////////////////////////////////////
-    public int getCountry_id() {
+/*    public int getCountry_id() {
         return country_id;
     }
 
     public void setCountry_id(int country_id) {
         this.country_id = country_id;
-    }
+    }*/
 
     //////////////////////////////////////////////////////////////
     public Integer getYear_of_reign() {
@@ -99,7 +99,8 @@ public class RulerCountryRel {
         return "RulerCountryRel:\n" +
                 "id: " + id +
                 "\nruler_id  : " + ruler_id + "" +
-                "\ncountry_id  : " + country_id + "" +
+                 "\ncountry_id  : " + country.getId() + "" +
+                 // "\ncountry  : " + country + "" +
                 "\nyear_of_reign : " + year_of_reign +
                 "\nyear_end_of_reign : " + year_end_of_reign;// +
     }
