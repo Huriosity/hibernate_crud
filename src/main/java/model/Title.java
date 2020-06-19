@@ -18,7 +18,7 @@ public class Title {
     private String name;
 
     //OneToMany Example
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "title")///////////////////////////////////////
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "title",fetch = FetchType.EAGER)///////////////////////////////////////
     @ElementCollection(targetClass=RullerMainTitleRel.class)/////////////////
     private Set<RullerMainTitleRel> rullerMainTitleRels = new HashSet<>();
     public Set<RullerMainTitleRel> getRullerMainTitleRels() {

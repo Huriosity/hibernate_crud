@@ -2,13 +2,16 @@ package dao;
 
 import com.github.Huriosity.InputUtils;
 import model.Ruler;
+import model.RulerCountryRel;
 import model.RullerMainTitleRel;
 import model.Title;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class RulerTitleDAO {
     public void start() {
@@ -87,6 +90,10 @@ public class RulerTitleDAO {
         return rullerMainTitleId;
     }
 
+    public void updateRulerMainTitle(){
+
+    }
+
     public void listRullersMainTitle() {
         Session session = Factory.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -98,5 +105,20 @@ public class RulerTitleDAO {
             System.out.println("\n================\n");
         }
         session.close();
+    }
+
+    public static RullerMainTitleRel findRulerMainTitleRelBy2ID(int rulerID, int titleID) {
+        Session session = Factory.getSessionFactory().openSession();
+        Query query = session.createQuery("FROM RullerMainTitleRel WHERE ruller_id = :id AND title_id = :id2");
+        query.setParameter("ruller_id", rulerID);
+        query.setParameter("title_id",titleID);
+        RullerMainTitleRel rullerMainTitleRel = (RullerMainTitleRel) query.getSingleResult();
+
+        System.out.println("ХОБА");
+        System.out.println(rullerMainTitleRel);
+
+        session.close();
+
+        return rullerMainTitleRel;
     }
 }

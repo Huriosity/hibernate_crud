@@ -31,7 +31,7 @@ public class Ruler {
     private Integer rullerMainTitleId;
 */
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id", referencedColumnName = "ruller_id") //////////////////////////////////////////////////
     private RullerMainTitleRel rullerMainTitleRel;
 
