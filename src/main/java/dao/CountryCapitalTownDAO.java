@@ -64,6 +64,7 @@ public class CountryCapitalTownDAO {
 
         Country country = CountryDAO.findCountryByID(countryID);
         country.addCountryTownRel(countryCapitalTownRel);
+        countryCapitalTownRel.setCountry(country);
         // tut setCountry
 
         Town town = TownDAO.findTownByID(townID);

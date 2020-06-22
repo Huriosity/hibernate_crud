@@ -2,6 +2,7 @@ package dao;
 
 import com.github.Huriosity.InputUtils;
 import model.Country;
+import model.Ruler;
 import model.Title;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -63,6 +64,22 @@ public class CountryDAO {
         transaction = session.beginTransaction();
 
         session.update(country);
+
+        transaction.commit();
+        session.close();
+    }
+
+    public void deleteCountry(){
+        //Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Country id");
+        int id = InputUtils.getInt();
+        Country country = CountryDAO.findCountryByID(id);
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.delete(country);
 
         transaction.commit();
         session.close();

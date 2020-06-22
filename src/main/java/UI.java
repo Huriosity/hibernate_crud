@@ -125,6 +125,10 @@ public class UI {
                                 countryDAO.updateCountry();
                                 break;
                             }
+                            case "5": {
+                                countryDAO.deleteCountry();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;

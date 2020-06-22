@@ -34,7 +34,10 @@ public class Town {
 
 
     /////////////////////////////////////////
-    public int getId() {
+    /*public int getId() {
+        return id;
+    }*/
+    public Integer getId() {
         return id;
     }
 

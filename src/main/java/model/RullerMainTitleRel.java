@@ -22,7 +22,7 @@ public class RullerMainTitleRel {
     @Column(name = "lost_the_title_in")
     private Integer lost_the_title_in;
 
-    @OneToOne(mappedBy = "rullerMainTitleRel")// cascade = CascadeType.ALL,
+    @OneToOne(mappedBy = "rullerMainTitleRel")
     private Ruler ruler;
 
     public Ruler getRuler() {

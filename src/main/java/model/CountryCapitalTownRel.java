@@ -38,7 +38,7 @@ public class CountryCapitalTownRel {
 
 
     @ManyToOne// (cascade = CascadeType.ALL)
-    @JoinColumn(name = "town_id", referencedColumnName = "id",insertable = false, updatable = false)
+    @JoinColumn(name = "town_id", referencedColumnName = "id", nullable = false)
     private Town town;
 
     public Town getTown() {
@@ -97,7 +97,7 @@ public class CountryCapitalTownRel {
 
     @Override
     public String toString() {
-        return "RulerCountryRel:\n" +
+        return "CountryCapitalTownRel:\n" +
                 "id: " + id +
                 "\ncountry id: " + country_id +
                 "\ntown id : " + town.getId() + "" +

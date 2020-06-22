@@ -37,7 +37,7 @@ public class RulerCountryRel {
     }
 
     @ManyToOne
-    @JoinColumn(name = "country_id", referencedColumnName = "id",insertable = false)
+    @JoinColumn(name = "country_id", referencedColumnName = "id",nullable = false)
     private Country country;
 
     public Country getCountry() {
