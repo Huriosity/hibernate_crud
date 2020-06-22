@@ -23,8 +23,17 @@ public class Ruler {
     @Column(name = "year_of_death")
     private Integer year_of_death;
 
-    @Column(name = "testator")
-    private Integer testator;
+/*    @Column(name = "testator")
+    private Integer testator;*/
+
+    @OneToMany(mappedBy = "testator", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ElementCollection(targetClass=CountryCapitalTownRel.class)/////////////////
+    private Set<Ruler> heirs;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "testator")
+    // @Column(name = "testator")
+    private Ruler testator;
 
 /*
     @Column(name = "fk_ruller_id", nullable = false, unique = true, insertable = false, updatable = false) //////////////////////////////
@@ -108,11 +117,11 @@ public class Ruler {
     }
 
     /////////////////////////////////////////////////////////
-    public Integer getTestator() {
+    public Ruler getTestator() {
         return testator;
     }
 
-    public void setTestator(Integer testator) {
+    public void setTestator(Ruler testator) {
         this.testator = testator;
     }
 
@@ -122,11 +131,21 @@ public class Ruler {
 
     @Override
     public String toString() {
+        if (testator != null) {
+            return "Ruler:\n" +
+                    "id: " + id +
+                    "\nName: " + name + "\n" +
+                    "year of birth: " + year_of_birth + "\n" +
+                    "year if death: " + year_of_death + "\n" +
+                    "testator id : " + testator.getId() + "\n" +
+                    "testator name : " + testator.getName() + "\n" ;
+
+        }
         return "Ruler:\n" +
                 "id: " + id +
                 "\nName: " + name + "\n" +
                 "year of birth: " + year_of_birth + "\n" +
                 "year if death: " + year_of_death + "\n" +
-                "testator: " + testator + "\n";
+                "testator : " + testator + "\n";
     }
 }

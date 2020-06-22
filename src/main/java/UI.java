@@ -48,6 +48,10 @@ public class UI {
                                 rulerDAO.updateRuler();
                                 break;
                             }
+                            case "5": {
+                                rulerDAO.deleteRuler();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;
@@ -288,6 +292,7 @@ public class UI {
                 "\n2 добавить " +
                 "\n3 find by id " +
                 "\n4 обновить " +
+                "\n5 yдалить " +
                 "\n Любая дpyгая клавиша = возвpат к выбоpy таблиц");
 
     }

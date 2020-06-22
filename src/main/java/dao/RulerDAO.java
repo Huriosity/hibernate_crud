@@ -1,7 +1,7 @@
 package dao;
 
 import model.Ruler;
-import model.Title;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 import  com.github.Huriosity.InputUtils;
 import org.hibernate.query.Query;
+
 
 public class RulerDAO {
     public void start() {
@@ -33,7 +34,7 @@ public class RulerDAO {
         String name = "";
         Integer year_of_birth;
         Integer year_of_death ;
-        Integer testator;
+        Ruler testator;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -58,8 +59,13 @@ public class RulerDAO {
             }
 
         }
-        System.out.println("Введите testator");
-        testator = InputUtils.getInteger();
+        System.out.println("Введите testatorID");
+        Integer testatorID = InputUtils.getInteger();
+        if(testatorID != null){
+            testator = RulerDAO.findRulerByID(testatorID);
+        } else {
+            testator = null;
+        }
 
         Session session = Factory.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -133,7 +139,8 @@ public class RulerDAO {
             if(choose.equals("y")){
                 System.out.println("Old testator: " + ruler.getTestator());
                 System.out.println("Enter new testator: ");
-                Integer testator = InputUtils.getInteger();
+                int testatorID = InputUtils.getInt();
+                Ruler testator = RulerDAO.findRulerByID(testatorID);
                 ruler.setTestator(testator);
                 break;
             } else if(choose.equals("n")){
@@ -150,6 +157,22 @@ public class RulerDAO {
         transaction.commit();
         session.close();
 
+    }
+
+    public void deleteRuler(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Ruler id");
+        int id = InputUtils.getInt();
+        Ruler ruler = RulerDAO.findRulerByID(id);
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.delete(ruler);
+
+        transaction.commit();
+        session.close();
     }
 
     public void listRullers() {

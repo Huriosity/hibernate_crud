@@ -7,7 +7,7 @@ public class InputUtils {
         Integer id = null;
         Scanner scanner = new Scanner(System.in);
         while (id == null) {
-            System.out.println("Input Integer value");
+            System.out.println("Input int value");
             String tmp = scanner.nextLine();
             if(isDigit(tmp)){
                 id = Integer.parseInt(tmp);
@@ -26,7 +26,7 @@ public class InputUtils {
             } else if (tmp.equals("") || tmp == null) {
                 return null;
             } else {
-                System.err.println("It's not int!!!");
+                System.err.println("It's not getInteger!!!");
             }
         }
         return null;
