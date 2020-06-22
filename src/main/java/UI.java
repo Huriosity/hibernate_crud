@@ -85,6 +85,10 @@ public class UI {
                                 titleDAO.updateTitle();
                                 break;
                             }
+                            case "5": {
+                                titleDAO.deleteTitle();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;

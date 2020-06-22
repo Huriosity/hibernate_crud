@@ -83,6 +83,22 @@ public class TitleDAO {
         session.close();
     }
 
+    public void deleteTitle(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Title id");
+        int id = InputUtils.getInt();
+        Title title = TitleDAO.findTitleByID(id);
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.delete(title);
+
+        transaction.commit();
+        session.close();
+    }
+
     public void listTitles() {
         Session session = Factory.getSessionFactory().openSession();
         Transaction transaction = null;
