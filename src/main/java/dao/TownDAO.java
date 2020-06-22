@@ -1,6 +1,7 @@
 package dao;
 
 import com.github.Huriosity.InputUtils;
+import model.Ruler;
 import model.Title;
 import model.Town;
 import org.hibernate.Session;
@@ -63,6 +64,21 @@ public class TownDAO {
         transaction = session.beginTransaction();
 
         session.update(town);
+
+        transaction.commit();
+        session.close();
+    }
+
+    public void deleteTown(){
+        System.out.println("Enter Town id");
+        int id = InputUtils.getInt();
+        Town town = TownDAO.findTownByID(id);
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.delete(town);
 
         transaction.commit();
         session.close();

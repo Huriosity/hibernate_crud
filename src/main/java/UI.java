@@ -163,6 +163,10 @@ public class UI {
                                 townDAO.updateTown();
                                 break;
                             }
+                            case "5": {
+                                townDAO.deleteTown();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;
