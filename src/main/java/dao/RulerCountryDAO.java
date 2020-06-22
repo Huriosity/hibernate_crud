@@ -141,6 +141,25 @@ public class RulerCountryDAO {
 
     }
 
+    public void deleteRulerCountry(){
+        System.out.println("Enter Ruler id");
+        int rulerID = InputUtils.getInt();
+
+        System.out.println("Enter Country id");
+        int countryID = InputUtils.getInt();
+
+        RulerCountryRel rulerCountryRel = RulerCountryDAO.findRulerCountryRelBy2ID(rulerID, countryID);
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.delete(rulerCountryRel);
+
+        transaction.commit();
+        session.close();
+    }
+
     public void listRullersCountrys() {
         Session session = Factory.getSessionFactory().openSession();
         Transaction transaction = null;

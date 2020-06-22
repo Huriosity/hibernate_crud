@@ -149,6 +149,25 @@ public class CountryCapitalTownDAO {
 
     }
 
+    public void deleteCountryCapital(){
+        System.out.println("Enter Country id");
+        int countryID = InputUtils.getInt();
+
+        System.out.println("Enter Town id");
+        int townID = InputUtils.getInt();
+
+        CountryCapitalTownRel countryCapitalTownRel = CountryCapitalTownDAO.findCountryCapitals(countryID, townID);
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.delete(countryCapitalTownRel);
+
+        transaction.commit();
+        session.close();
+    }
+
     public void listCountryCapitals() {
         Session session = Factory.getSessionFactory().openSession();
         Transaction transaction = null;

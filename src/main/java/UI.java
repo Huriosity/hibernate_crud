@@ -240,6 +240,10 @@ public class UI {
                                 rulerCountryDAO.updateRulerCountry();
                                 break;
                             }
+                            case "5": {
+                                rulerCountryDAO.deleteRulerCountry();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;
@@ -269,6 +273,10 @@ public class UI {
                             }
                             case "4": {
                                 countryCapitalTownDAO.updateCountryCapital();
+                                break;
+                            }
+                            case "5": {
+                                countryCapitalTownDAO.deleteCountryCapital();
                                 break;
                             }
                             default: {
