@@ -247,6 +247,10 @@ public class UI {
                                 System.out.println("Not impl..");
                                 break;
                             }
+                            case "4": {
+                                countryCapitalTownDAO.updateCountryCapital();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;

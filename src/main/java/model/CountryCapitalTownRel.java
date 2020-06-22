@@ -14,9 +14,9 @@ public class CountryCapitalTownRel {
     @Column(name = "country_id",nullable = false)
     private int country_id;
 
-    @Column(name = "town_id",nullable = false)
+   /* @Column(name = "town_id",nullable = false)
     private int town_id;
-
+*/
     @Column(name = "capital_start_year")
     private Integer capital_start_year;
 
@@ -69,13 +69,13 @@ public class CountryCapitalTownRel {
     }
 
     /////////////////////////////////////////////////////////
-    public int getTown_id() {
+    /*public int getTown_id() {
         return town_id;
     }
 
     public void setTown_id(int town_id) {
         this.town_id = town_id;
-    }
+    }*/
 
     /////////////////////////////////////////////////////////
     public Integer getCapital_start_year() {
@@ -98,8 +98,10 @@ public class CountryCapitalTownRel {
     @Override
     public String toString() {
         return "RulerCountryRel:\n" +
-                "country id: " + country_id +
-                "\ntown id : " + town_id + "" +
+                "id: " + id +
+                "\ncountry id: " + country_id +
+                "\ntown id : " + town.getId() + "" +
+                "\ntown name : " + town.getName() + "" +
                 "\ncapital_start_year : " + capital_start_year +
                 "\ncapital_end_year : " + capital_end_year;// +
     }
