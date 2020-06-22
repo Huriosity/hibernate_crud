@@ -96,10 +96,10 @@ public class RulerTitleDAO {
         System.out.println("Enter Ruler id");
         int rulerID = InputUtils.getInt();
 
-        System.out.println("Enter Title id");
-        int titleID = InputUtils.getInt();
+       /* System.out.println("Enter Title id");
+        int titleID = InputUtils.getInt();*/
 
-        RullerMainTitleRel rullerMainTitleRel = RulerTitleDAO.findRulerMainTitleRelBy2ID(rulerID,titleID);
+        RullerMainTitleRel rullerMainTitleRel = RulerTitleDAO.findRulerMainTitleRelBy2ID(rulerID);//,titleID);
 
         while (true){
             System.out.println("Would you like to change the title? (y/n)");
@@ -154,6 +154,21 @@ public class RulerTitleDAO {
 
     }
 
+    public void deleteRulerTitle(){
+        System.out.println("Enter Ruler id");
+        int rulerID = InputUtils.getInt();
+        RullerMainTitleRel rullerMainTitleRel = RulerTitleDAO.findRulerMainTitleRelBy2ID(rulerID); //.findRulerByID(id);
+
+        Session session = Factory.getSessionFactory().openSession();
+        Transaction transaction = null;
+        transaction = session.beginTransaction();
+
+        session.delete(rullerMainTitleRel);
+
+        transaction.commit();
+        session.close();
+    }
+
     public void listRullersMainTitle() {
         Session session = Factory.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -167,11 +182,13 @@ public class RulerTitleDAO {
         session.close();
     }
 
-    public static RullerMainTitleRel findRulerMainTitleRelBy2ID(int rulerID, int titleID) {
+    //public static RullerMainTitleRel findRulerMainTitleRelBy2ID(int rulerID, int titleID) {
+    public static RullerMainTitleRel findRulerMainTitleRelBy2ID(int rulerID) {
         Session session = Factory.getSessionFactory().openSession();
-        Query query = session.createQuery("FROM RullerMainTitleRel WHERE ruller_id = :id AND title_id = :id2");
+        // Query query = session.createQuery("FROM RullerMainTitleRel WHERE ruller_id = :id AND title_id = :id2");
+        Query query = session.createQuery("FROM RullerMainTitleRel WHERE ruller_id = :id");
         query.setParameter("id", rulerID);
-        query.setParameter("id2",titleID);
+        // query.setParameter("id2",titleID);
         RullerMainTitleRel rullerMainTitleRel = (RullerMainTitleRel) query.getSingleResult();
 
         System.out.println("ХОБА");

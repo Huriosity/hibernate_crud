@@ -202,6 +202,10 @@ public class UI {
                                 rulerTitleDAO.updateRulerMainTitle();
                                 break;
                             }
+                            case "5": {
+                                rulerTitleDAO.deleteRulerTitle();
+                                break;
+                            }
                             default: {
                                 tmp = "end";
                                 break;
